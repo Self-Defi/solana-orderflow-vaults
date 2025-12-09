@@ -9,77 +9,73 @@ const vaults = [
     horizon: "Multi-year",
     role: "Conservative reserve layer",
     aprBand: "8–15% APR",
-    targetUsers:
-      "Microschools, families, and DAOs wanting a secure base yield engine.",
     mandate:
-      "Accumulate organic yield with minimal strategy drift — staking, MEV rebates, and conservative lending.",
+      "Accumulate organic yield with minimal strategy drift — SOL staking, MEV rebates, conservative lending, and blue-chip liquidity on core pairs.",
     allocations: [
       { label: "JitoSOL staking + MEV", percent: "60–70%" },
       { label: "SOL / JitoSOL lending", percent: "20–30%" },
-      { label: "SOL-USDC liquidity fees", percent: "10–20%" },
+      { label: "SOL–USDC liquidity fees", percent: "10–20%" },
     ],
     yieldSources: [
-      "SOL staking yields",
+      "SOL staking rewards",
       "MEV rebate participation",
-      "Lending spreads",
-      "DEX fee volume",
+      "Lending spreads from on-chain leverage demand",
+      "DEX fee volume on core pairs",
     ],
     risks:
-      "Smart contract risk, validator variations, low swap volumes reduce returns.",
+      "Smart contract risk, validator performance variance, and periods of low swap volume that compress fee income. This vault avoids leverage, reducing liquidation risk but not eliminating market or protocol risk.",
   },
   {
     id: "growth",
     name: "Order-Flow Growth Vault",
-    tagline: "Strategic upside via liquidity concentration + controlled leverage.",
+    tagline:
+      "Strategic upside via tighter liquidity bands and controlled leverage.",
     riskLabel: "Moderate",
     riskClass: "risk-mod",
     horizon: "2–5 years",
     role: "Growth allocation",
     aprBand: "20–40% APR",
-    targetUsers:
-      "Programs/families that already have a reserve base and want higher returns.",
     mandate:
-      "Increase fee intensity and staking exposure via optimized CLMM positions.",
+      "Increase exposure to fee intensity and staking economics through optimized CLMM positions and modest leverage, on top of a reserve anchor.",
     allocations: [
-      { label: "JitoSOL unlevered base", percent: "40–50%" },
-      { label: "Strategic CLMM LP", percent: "25–35%" },
-      { label: "Modest leverage sleeve", percent: "20–30%" },
+      { label: "JitoSOL base (unlevered)", percent: "40–50%" },
+      { label: "Strategic CLMM LP on blue-chip pairs", percent: "25–35%" },
+      { label: "Moderate leverage growth sleeve", percent: "20–30%" },
     ],
     yieldSources: [
-      "Reserve vault sources",
-      "Tighter liquidity fee concentration",
-      "Leverage-amplified staking flows",
-      "Incentive multipliers",
+      "All Reserve Vault sources",
+      "Higher fee capture from tighter CLMM ranges",
+      "Leverage-amplified staking and LP returns within controlled LTV bands",
+      "Incentive programs from core Solana DeFi protocols",
     ],
     risks:
-      "IL, liquidation sensitivity, incentive drift — belongs to a capped allocation.",
+      "Impermanent loss if ranges drift, liquidation risk on leveraged positions during drawdowns, and dependence on incentive programs. This layer should be a defined slice above a stable reserve, never the entire treasury.",
   },
   {
     id: "velocity",
     name: "Order-Flow Velocity Vault",
-    tagline: "Short-cycle tactical sleeve that captures volatility and incentives.",
+    tagline:
+      "Short-cycle tactical sleeve that captures volatility and incentive regimes.",
     riskLabel: "Moderate–High",
     riskClass: "risk-high",
     horizon: "4–12 weeks",
     role: "Satellite alpha",
-    aprBand: "20–200% APR",
-    targetUsers:
-      "Allocators with reserve + growth layers looking for tactical upside.",
+    aprBand: "20–200% APR (regime-dependent)",
     mandate:
-      "Exploit short-lived fee distortions and meme liquidity with hard exposure caps.",
+      "Harvest short-lived order-flow spikes, meme rotations, and incentive programs with hard caps and strict unwind rules. Explicitly not a stable income engine.",
     allocations: [
-      { label: "Volatility-driven CLMM LP", percent: "50–70%" },
-      { label: "Perp funding MM vaults", percent: "15–25%" },
-      { label: "Incentive harvesting rotations", percent: "10–20%" },
+      { label: "Volatility-focused CLMM liquidity", percent: "50–70%" },
+      { label: "Perp funding / MM vaults", percent: "15–25%" },
+      { label: "Short-term LM / incentive loops", percent: "10–20%" },
     ],
     yieldSources: [
-      "Fee spikes",
-      "Funding asymmetry",
-      "LM boosts",
-      "Short-cycle directional effect",
+      "Fee spikes during volatile trading conditions",
+      "Perpetual funding rate asymmetries and market-making fees",
+      "Short-lived liquidity mining and incentive campaigns",
+      "Occasional directional upside if rotations are positioned correctly",
     ],
     risks:
-      "High regime dependency: dry markets or trend markets punish returns.",
+      "Highly regime-dependent. If meme liquidity dries up or incentives end abruptly, returns can compress or turn negative quickly. This sleeve should always be capped as a small percentage of an overall reserve + growth stack.",
   },
 ];
 
@@ -89,7 +85,6 @@ const detailTitle = document.getElementById("detailTitle");
 const detailTagline = document.getElementById("detailTagline");
 const detailBadges = document.getElementById("detailBadges");
 const detailMandate = document.getElementById("detailMandate");
-const detailTargetUsers = document.getElementById("detailTargetUsers");
 const detailAllocations = document.getElementById("detailAllocations");
 const detailYieldSources = document.getElementById("detailYieldSources");
 const detailRisks = document.getElementById("detailRisks");
@@ -97,13 +92,14 @@ const detailRisks = document.getElementById("detailRisks");
 const profileButtons = document.querySelectorAll(".btn-chip");
 const profileHint = document.getElementById("profileHint");
 
+// Profile text
 const profileHints = {
   school:
-    "Schools should treat Reserve as core treasury, Growth as expansion, and Velocity as optional.",
+    "For microschools, treat the Reserve Vault as core treasury, Growth as a measured expansion sleeve, and Velocity as strictly capped and optional.",
   family:
-    "Families should begin in Reserve and expand gradually depending on goals and tolerance.",
+    "For families, build a base in the Reserve Vault first. Add Growth only once time horizon and risk tolerance are clear. Velocity is for truly discretionary capital.",
   dao:
-    "DAOs may treat this as a treasury stack: runway, growth, and tactical sleeve.",
+    "For DAOs and treasuries, map vaults to roles: Reserve for runway, Growth for expansion, Velocity for tightly capped tactical strategies. Document allocation rules in governance before deploying.",
 };
 
 // Render vault cards
@@ -131,6 +127,8 @@ function renderVaultCards() {
 // Populate details
 function selectVault(id) {
   const v = vaults.find((x) => x.id === id);
+  if (!v) return;
+
   document.querySelectorAll(".vault-card").forEach((c) =>
     c.classList.toggle("active", c.dataset.id === id)
   );
@@ -138,15 +136,16 @@ function selectVault(id) {
   detailTitle.textContent = v.name;
   detailTagline.textContent = v.tagline;
   detailMandate.textContent = v.mandate;
-  detailTargetUsers.textContent = v.targetUsers;
   detailRisks.textContent = v.risks;
 
+  // badges
   detailBadges.innerHTML = `
     <span class="badge ${v.riskClass}">Risk: ${v.riskLabel}</span>
     <span class="badge accent">${v.role}</span>
     <span class="badge">Horizon: ${v.horizon}</span>
   `;
 
+  // allocations
   detailAllocations.innerHTML = "";
   v.allocations.forEach((a) => {
     const li = document.createElement("li");
@@ -154,6 +153,7 @@ function selectVault(id) {
     detailAllocations.appendChild(li);
   });
 
+  // yield sources
   detailYieldSources.innerHTML = "";
   v.yieldSources.forEach((y) => {
     const li = document.createElement("li");
@@ -162,7 +162,7 @@ function selectVault(id) {
   });
 }
 
-// Profile logic
+// Profile selector
 profileButtons.forEach((btn) =>
   btn.addEventListener("click", () => {
     profileButtons.forEach((b) => b.classList.remove("active"));
@@ -171,17 +171,17 @@ profileButtons.forEach((btn) =>
   })
 );
 
-// Smooth scroll
+// Smooth scroll buttons
 document.querySelectorAll("[data-scroll]").forEach((el) => {
   el.addEventListener("click", () => {
-    document.querySelector(el.getAttribute("data-scroll"))?.scrollIntoView({
-      behavior: "smooth",
-    });
+    const target = document.querySelector(el.getAttribute("data-scroll"));
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
   });
 });
 
-// Initialize
+// Init
 renderVaultCards();
 selectVault("reserve");
 profileHint.textContent = profileHints["school"];
-
