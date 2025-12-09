@@ -11,7 +11,7 @@
   --radius-lg: 18px;
   --radius-xl: 24px;
   --radius-pill: 999px;
-  --shadow-soft: 0 14px 30px rgba(15, 91, 167, 0.1);
+  --shadow-soft: 0 14px 30px rgba(15, 91, 167, 0.12);
   --shadow-subtle: 0 10px 20px rgba(15, 23, 42, 0.06);
 }
 
@@ -48,6 +48,15 @@ body {
   background: rgba(249, 250, 251, 0.92);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(148, 163, 184, 0.4);
+  transition: padding 0.18s ease, background 0.18s ease, box-shadow 0.18s ease,
+    border-color 0.18s ease;
+}
+
+.topbar--compact {
+  padding: 0.4rem 1.5rem;
+  background: rgba(15, 23, 42, 0.97);
+  border-bottom-color: rgba(30, 64, 175, 0.7);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.45);
 }
 
 .brand {
@@ -61,6 +70,11 @@ body {
   width: auto;
   border-radius: 12px;
   object-fit: contain;
+  transition: height 0.18s ease;
+}
+
+.topbar--compact .brand-logo {
+  height: 34px;
 }
 
 .brand-text {
@@ -73,11 +87,18 @@ body {
   letter-spacing: 0.14em;
   text-transform: uppercase;
   font-size: 0.78rem;
+  transition: color 0.18s ease, font-size 0.18s ease;
 }
 
 .brand-tagline {
   font-size: 0.75rem;
   color: var(--text-muted);
+  transition: color 0.18s ease;
+}
+
+.topbar--compact .brand-name,
+.topbar--compact .brand-tagline {
+  color: #e5e7eb;
 }
 
 .topnav {
@@ -92,6 +113,10 @@ body {
   padding: 0.35rem 0.75rem;
   border-radius: 999px;
   transition: background 0.15s ease, color 0.15s ease;
+}
+
+.topbar--compact .topnav a {
+  color: #e5e7eb;
 }
 
 .topnav a:hover {
@@ -110,12 +135,32 @@ body {
 /* Hero */
 
 .hero {
+  position: relative;
   display: grid;
   grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
   gap: 2rem;
   align-items: stretch;
   margin-top: 1.5rem;
   margin-bottom: 2.5rem;
+}
+
+/* Hero background "vault" graphic */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: -40px -60px auto auto;
+  background:
+    radial-gradient(circle at top right, rgba(96, 165, 250, 0.35), transparent 55%),
+    radial-gradient(circle at center, rgba(15, 23, 42, 0.78), transparent 70%);
+  opacity: 0.9;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-text,
+.hero-card {
+  position: relative;
+  z-index: 1;
 }
 
 .hero-text h1 {
@@ -157,7 +202,7 @@ body {
   box-shadow: var(--shadow-soft);
 }
 
-/* FIX — high contrast for visibility */
+/* HIGH-CONTRAST outline for hero secondary button */
 .btn-outline {
   background: transparent;
   color: #f9fafb;
@@ -210,12 +255,22 @@ body {
   justify-content: space-between;
 }
 
-.hero-metrics span {
-  color: var(--text-muted);
+/* Subtle shimmer / pulse on APR values */
+.hero-metrics li strong {
+  font-weight: 600;
+  animation: metricPulse 3.2s ease-in-out infinite;
 }
 
-.hero-metrics strong {
-  font-weight: 600;
+.hero-metrics li:nth-child(2) strong {
+  animation-delay: 0.7s;
+}
+
+.hero-metrics li:nth-child(3) strong {
+  animation-delay: 1.4s;
+}
+
+.hero-metrics span {
+  color: var(--text-muted);
 }
 
 .hero-note {
@@ -252,6 +307,7 @@ body {
 }
 
 .vault-card {
+  position: relative;
   background: rgba(255, 255, 255, 0.96);
   border-radius: var(--radius-lg);
   padding: 1rem;
@@ -266,6 +322,21 @@ body {
   backdrop-filter: blur(6px);
 }
 
+.vault-card::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: radial-gradient(circle at top, rgba(129, 140, 248, 0.2), transparent);
+  opacity: 0;
+  transition: opacity 0.18s ease;
+  pointer-events: none;
+}
+
+.vault-card:hover::before {
+  opacity: 1;
+}
+
 .vault-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 18px 32px rgba(15, 23, 42, 0.12);
@@ -276,6 +347,10 @@ body {
   border-color: var(--accent);
   box-shadow: 0 20px 40px rgba(15, 91, 167, 0.25);
   background: linear-gradient(145deg, #fdfefe, #eef2ff);
+}
+
+.vault-card.active::before {
+  opacity: 1;
 }
 
 .vault-name {
@@ -380,7 +455,7 @@ body {
   color: #b91c1c;
 }
 
-/* Unified Board */
+/* Unified board */
 
 .details-board {
   display: grid;
@@ -395,6 +470,14 @@ body {
   border: 1px solid rgba(212, 175, 55, 0.3);
   box-shadow: var(--shadow-subtle);
   backdrop-filter: blur(6px);
+  transition: transform 0.12s ease, box-shadow 0.12s ease,
+    border-color 0.12s ease;
+}
+
+.detail-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 16px 30px rgba(15, 23, 42, 0.1);
+  border-color: rgba(37, 99, 235, 0.4);
 }
 
 .detail-card h3 {
@@ -434,7 +517,7 @@ body {
   padding: 0.15rem 0;
 }
 
-/* Profile Side */
+/* Profile side */
 
 .side-help {
   margin: 0 0 0.6rem;
@@ -509,28 +592,52 @@ body {
   border-top: 2px solid rgba(148, 163, 184, 0.4);
 }
 
+/* Animations */
+
+@keyframes metricPulse {
+  0%,
+  100% {
+    opacity: 0.75;
+    transform: translateY(0);
+  }
+  40% {
+    opacity: 1;
+    transform: translateY(-1px);
+  }
+}
+
 /* Responsive */
 
 @media (max-width: 960px) {
   .hero {
     grid-template-columns: minmax(0, 1fr);
   }
+
+  .hero::before {
+    inset: -20px -20px auto auto;
+  }
+
   .vault-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
   .details-header {
     flex-direction: column;
     align-items: flex-start;
   }
+
   .detail-badges {
     justify-content: flex-start;
   }
+
   .details-board {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
   .detail-span-2 {
     grid-column: span 2;
   }
+
   .disclaimer-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -542,24 +649,31 @@ body {
     align-items: flex-start;
     gap: 0.5rem;
   }
+
   .topnav {
     width: 100%;
     justify-content: flex-start;
     flex-wrap: wrap;
   }
+
   .vault-grid {
     grid-template-columns: minmax(0, 1fr);
   }
+
   .details-board {
     grid-template-columns: minmax(0, 1fr);
   }
+
   .detail-span-2 {
     grid-column: span 1;
   }
+
   .disclaimer-grid {
     grid-template-columns: minmax(0, 1fr);
   }
+
   .page {
     padding-inline: 1rem;
   }
 }
+
