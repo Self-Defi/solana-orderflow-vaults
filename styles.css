@@ -279,6 +279,62 @@ body {
   color: var(--text-muted);
 }
 
+/* Demo metrics strip */
+
+.metrics-strip {
+  margin-bottom: 2.1rem;
+  padding: 1.25rem 1rem 1.4rem;
+  border-radius: 22px;
+  background: linear-gradient(120deg, rgba(15, 23, 42, 0.96), #020617);
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.45);
+  color: #e5e7eb;
+}
+
+.metrics-header h2 {
+  margin: 0 0 0.25rem;
+  font-size: 1.05rem;
+}
+
+.metrics-header p {
+  margin: 0 0 0.9rem;
+  font-size: 0.8rem;
+  color: #cbd5f5;
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.metric-card {
+  border-radius: 16px;
+  padding: 0.7rem 0.9rem;
+  background: radial-gradient(circle at top left, rgba(30, 64, 175, 0.65), rgba(15, 23, 42, 0.9));
+  border: 1px solid rgba(148, 163, 184, 0.7);
+  box-shadow: 0 10px 26px rgba(15, 23, 42, 0.55);
+}
+
+.metric-label {
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #cbd5f5;
+  margin-bottom: 0.3rem;
+}
+
+.metric-value {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #f9fafb;
+}
+
+.metric-sub {
+  font-size: 0.76rem;
+  color: #a5b4fc;
+  margin-top: 0.25rem;
+}
+
 /* Sections */
 
 .section-header {
@@ -617,6 +673,10 @@ body {
     inset: -20px -20px auto auto;
   }
 
+  .metrics-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .vault-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -656,6 +716,10 @@ body {
     flex-wrap: wrap;
   }
 
+  .metrics-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
   .vault-grid {
     grid-template-columns: minmax(0, 1fr);
   }
@@ -676,4 +740,5 @@ body {
     padding-inline: 1rem;
   }
 }
+
 
