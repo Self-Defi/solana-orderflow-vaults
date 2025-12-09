@@ -9,16 +9,16 @@
     content="Solana Order-Flow Vaults — Self-Defi architecture for Reserve, Growth, and Velocity vault models."
   />
   <link rel="stylesheet" href="styles.css" />
-  <link rel="icon" type="image/png" href="./assets/self-defi-logo.png" />
+  <link rel="icon" type="image/png" href="./assets/logo.png" />
 </head>
 
 <body>
   <!-- Header -->
   <header class="topbar">
     <div class="brand">
-      <img src="./assets/self-defi-logo.png" class="brand-logo" alt="Logo">
+      <img src="./assets/logo.png" class="brand-logo" alt="Self-Defi Logo">
       <div class="brand-text">
-        <div class="brand-name">Self-Defi</div>
+        <div class="brand-name">SELF-DEFI</div>
         <div class="brand-tagline">Digital Infrastructure Architect</div>
       </div>
     </div>
@@ -53,11 +53,14 @@
           <li><span>Growth</span><strong>20–40% APR</strong></li>
           <li><span>Velocity</span><strong>Regime-Dependent</strong></li>
         </ul>
+        <p class="hero-note">
+          Ranges are indicative bands based on on-chain conditions, not guarantees.
+        </p>
       </div>
     </section>
 
     <!-- Vault cards -->
-    <section id="vaults">
+    <section id="vaults" class="vaults-section">
       <header class="section-header">
         <h2>Vault Lineup</h2>
         <p>Select a vault to view allocation and yield drivers.</p>
@@ -66,24 +69,20 @@
     </section>
 
     <!-- Vault details -->
-    <section id="details">
+    <section id="details" class="details-section">
       <div class="details-layout">
         <div class="details-main">
-          <h2 id="detailTitle">Select a vault to view structure</h2>
+          <h2 id="detailTitle">Order-Flow Reserve Vault</h2>
           <p id="detailTagline" class="detail-tagline">
-            Each vault aligns risk, time horizon, and role in a treasury.
+            Base yield layer from staking, MEV, lending, and core-pair liquidity.
           </p>
 
           <div id="detailBadges" class="detail-badges"></div>
 
           <div class="detail-columns">
             <div class="detail-card">
-              <h3>Mandate</h3>
+              <h3>Mandate &amp; Role</h3>
               <p id="detailMandate"></p>
-            </div>
-            <div class="detail-card">
-              <h3>Target Users</h3>
-              <p id="detailTargetUsers"></p>
             </div>
           </div>
 
@@ -104,38 +103,53 @@
           </div>
         </div>
 
+        <!-- Side panel -->
         <aside class="details-side">
           <div class="side-card">
             <h3>Client Profile</h3>
-            <p class="side-help">Select your perspective.</p>
+            <p class="side-help">Select your perspective to frame vault roles.</p>
             <div class="profile-buttons">
               <button class="btn-chip active" data-profile="school">Microschool</button>
               <button class="btn-chip" data-profile="family">Family</button>
-              <button class="btn-chip" data-profile="dao">DAO</button>
+              <button class="btn-chip" data-profile="dao">DAO / Treasury</button>
             </div>
             <p id="profileHint" class="profile-hint"></p>
           </div>
 
           <div class="side-card side-card-muted">
             <h3>Wallet Connection</h3>
-            <p class="side-help">Coming soon — non-custodial signing flow.</p>
+            <p class="side-help">
+              Coming soon — non-custodial signing flow for vault deployment.
+            </p>
             <button class="btn btn-disabled" disabled>Connect Wallet (Prototype)</button>
           </div>
         </aside>
       </div>
     </section>
 
+    <!-- Disclosures -->
     <section id="disclaimer" class="disclaimer-section">
       <h2>Disclosures</h2>
       <div class="disclaimer-grid">
-        <div class="disclaimer-card"><h3>Not a Custodian</h3><p>Self-Defi never controls user assets.</p></div>
-        <div class="disclaimer-card"><h3>No Guarantees</h3><p>Indicative ranges only — market dependent.</p></div>
-        <div class="disclaimer-card"><h3>Architecture, Not Advice</h3><p>This platform describes vault structures; execution is user-directed.</p></div>
+        <div class="disclaimer-card">
+          <h3>Not a Custodian</h3>
+          <p>Self-Defi never controls user assets. Users sign transactions from their own wallets.</p>
+        </div>
+        <div class="disclaimer-card">
+          <h3>No Guarantees</h3>
+          <p>Yield bands shown are indicative ranges only. Actual performance depends on market regimes and protocol behavior.</p>
+        </div>
+        <div class="disclaimer-card">
+          <h3>Architecture, Not Advice</h3>
+          <p>
+            This interface describes vault structures and flows. It is not investment, tax, or legal advice.
+          </p>
+        </div>
       </div>
     </section>
 
     <footer class="footer">
-      Self-Defi • Order-Flow Vault Stack • Proof-of-Execution Operator
+      Powered by Self-Defi | Digital Infrastructure Architect | CBP | CEP
     </footer>
   </main>
 
