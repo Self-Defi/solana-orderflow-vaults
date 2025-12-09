@@ -59,7 +59,7 @@
       </div>
     </section>
 
-    <!-- Vault cards -->
+    <!-- Vault grid -->
     <section id="vaults" class="vaults-section">
       <header class="section-header">
         <h2>Vault Lineup</h2>
@@ -68,62 +68,52 @@
       <div id="vaultGrid" class="vault-grid"></div>
     </section>
 
-    <!-- Vault details -->
+    <!-- Details board -->
     <section id="details" class="details-section">
-      <div class="details-layout">
-        <div class="details-main">
+      <div class="details-header">
+        <div>
           <h2 id="detailTitle">Order-Flow Reserve Vault</h2>
           <p id="detailTagline" class="detail-tagline">
             Base yield layer from staking, MEV, lending, and core-pair liquidity.
           </p>
+        </div>
+        <div id="detailBadges" class="detail-badges"></div>
+      </div>
 
-          <div id="detailBadges" class="detail-badges"></div>
-
-          <div class="detail-columns">
-            <div class="detail-card">
-              <h3>Mandate &amp; Role</h3>
-              <p id="detailMandate"></p>
-            </div>
-          </div>
-
-          <div class="detail-columns">
-            <div class="detail-card">
-              <h3>Allocation Model</h3>
-              <ul id="detailAllocations" class="allocation-list"></ul>
-            </div>
-            <div class="detail-card">
-              <h3>Yield Sources</h3>
-              <ul id="detailYieldSources" class="yield-list"></ul>
-            </div>
-          </div>
-
-          <div class="detail-card">
-            <h3>Risk Factors</h3>
-            <p id="detailRisks"></p>
-          </div>
+      <div class="details-board">
+        <!-- Mandate spans two columns -->
+        <div class="detail-card detail-span-2">
+          <h3>Mandate &amp; Role</h3>
+          <p id="detailMandate"></p>
         </div>
 
-        <!-- Side panel -->
-        <aside class="details-side">
-          <div class="side-card">
-            <h3>Client Profile</h3>
-            <p class="side-help">Select your perspective to frame vault roles.</p>
-            <div class="profile-buttons">
-              <button class="btn-chip active" data-profile="school">Microschool</button>
-              <button class="btn-chip" data-profile="family">Family</button>
-              <button class="btn-chip" data-profile="dao">DAO / Treasury</button>
-            </div>
-            <p id="profileHint" class="profile-hint"></p>
+        <!-- Client profile side card -->
+        <aside class="detail-card detail-side">
+          <h3>Client Profile</h3>
+          <p class="side-help">Select your perspective to frame vault roles.</p>
+          <div class="profile-buttons">
+            <button class="btn-chip active" data-profile="school">Microschool</button>
+            <button class="btn-chip" data-profile="family">Family</button>
+            <button class="btn-chip" data-profile="dao">DAO / Treasury</button>
           </div>
-
-          <div class="side-card side-card-muted">
-            <h3>Wallet Connection</h3>
-            <p class="side-help">
-              Coming soon — non-custodial signing flow for vault deployment.
-            </p>
-            <button class="btn btn-disabled" disabled>Connect Wallet (Prototype)</button>
-          </div>
+          <p id="profileHint" class="profile-hint"></p>
         </aside>
+
+        <!-- Allocation / Yield / Risk row -->
+        <div class="detail-card">
+          <h3>Allocation Model</h3>
+          <ul id="detailAllocations" class="allocation-list"></ul>
+        </div>
+
+        <div class="detail-card">
+          <h3>Yield Sources</h3>
+          <ul id="detailYieldSources" class="yield-list"></ul>
+        </div>
+
+        <div class="detail-card">
+          <h3>Risk Factors</h3>
+          <p id="detailRisks"></p>
+        </div>
       </div>
     </section>
 
@@ -141,9 +131,7 @@
         </div>
         <div class="disclaimer-card">
           <h3>Architecture, Not Advice</h3>
-          <p>
-            This interface describes vault structures and flows. It is not investment, tax, or legal advice.
-          </p>
+          <p>This interface describes vault structures and flows. It is not investment, tax, or legal advice.</p>
         </div>
       </div>
     </section>
@@ -156,4 +144,5 @@
   <script src="app.js"></script>
 </body>
 </html>
+
 
