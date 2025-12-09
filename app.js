@@ -171,7 +171,7 @@ profileButtons.forEach((btn) =>
   })
 );
 
-// Smooth scroll buttons
+// Smooth scroll buttons (hero nav)
 document.querySelectorAll("[data-scroll]").forEach((el) => {
   el.addEventListener("click", () => {
     const target = document.querySelector(el.getAttribute("data-scroll"));
@@ -181,7 +181,19 @@ document.querySelectorAll("[data-scroll]").forEach((el) => {
   });
 });
 
+// Shrink header on scroll
+const topbar = document.querySelector(".topbar");
+window.addEventListener("scroll", () => {
+  if (!topbar) return;
+  if (window.scrollY > 18) {
+    topbar.classList.add("topbar--compact");
+  } else {
+    topbar.classList.remove("topbar--compact");
+  }
+});
+
 // Init
 renderVaultCards();
 selectVault("reserve");
 profileHint.textContent = profileHints["school"];
+
