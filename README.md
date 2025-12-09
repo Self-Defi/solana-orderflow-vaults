@@ -1,4 +1,12 @@
-Self-Defi: Solana Order-Flow Vaults
+# Self-Defi: Solana Order-Flow Vaults
+
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)  
+![Non-Custodial](https://img.shields.io/badge/Self--Defi-Architecture-green)  
+![Infrastructure](https://img.shields.io/badge/Role-Infrastructure-blue)  
+![Prototype Stage](https://img.shields.io/badge/Status-Prototype--Phase-orange)  
+![Sovereignty First](https://img.shields.io/badge/Sovereignty-First-black)
+
+---
 
 A non-custodial DeFi infrastructure blueprint for Solana vaults — designed for schools, families, DAOs, and small treasuries.
 
