@@ -1,1 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Self-Defi | Solana Order-Flow Vaults</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="Solana Order-Flow Vaults — Self-Defi architecture for Reserve, Growth, and Velocity vault models."
+  />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" type="image/png" href="./assets/self-defi-logo.png" />
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="topbar">
+    <div class="brand">
+      <img src="./assets/self-defi-logo.png" class="brand-logo" alt="Logo">
+      <div class="brand-text">
+        <div class="brand-name">Self-Defi</div>
+        <div class="brand-tagline">Digital Infrastructure Architect</div>
+      </div>
+    </div>
+
+    <nav class="topnav">
+      <a href="#vaults">Vaults</a>
+      <a href="#details">Details</a>
+      <a href="#disclaimer">Disclosures</a>
+    </nav>
+  </header>
+
+  <main class="page">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-text">
+        <h1>Solana Order-Flow Vaults</h1>
+        <p class="hero-subtitle">
+          Non-custodial vault designs that earn yield from Solana’s real economic
+          activity — staking, MEV rebates, lending spreads, and liquidity fees.
+        </p>
+
+        <div class="hero-actions">
+          <button class="btn btn-primary" data-scroll="#vaults">View Vaults</button>
+          <button class="btn btn-outline" data-scroll="#details">How It Works</button>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <h2>Vault Snapshot</h2>
+        <ul class="hero-metrics">
+          <li><span>Reserve</span><strong>8–15% APR</strong></li>
+          <li><span>Growth</span><strong>20–40% APR</strong></li>
+          <li><span>Velocity</span><strong>Regime-Dependent</strong></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Vault cards -->
+    <section id="vaults">
+      <header class="section-header">
+        <h2>Vault Lineup</h2>
+        <p>Select a vault to view allocation and yield drivers.</p>
+      </header>
+      <div id="vaultGrid" class="vault-grid"></div>
+    </section>
+
+    <!-- Vault details -->
+    <section id="details">
+      <div class="details-layout">
+        <div class="details-main">
+          <h2 id="detailTitle">Select a vault to view structure</h2>
+          <p id="detailTagline" class="detail-tagline">
+            Each vault aligns risk, time horizon, and role in a treasury.
+          </p>
+
+          <div id="detailBadges" class="detail-badges"></div>
+
+          <div class="detail-columns">
+            <div class="detail-card">
+              <h3>Mandate</h3>
+              <p id="detailMandate"></p>
+            </div>
+            <div class="detail-card">
+              <h3>Target Users</h3>
+              <p id="detailTargetUsers"></p>
+            </div>
+          </div>
+
+          <div class="detail-columns">
+            <div class="detail-card">
+              <h3>Allocation Model</h3>
+              <ul id="detailAllocations" class="allocation-list"></ul>
+            </div>
+            <div class="detail-card">
+              <h3>Yield Sources</h3>
+              <ul id="detailYieldSources" class="yield-list"></ul>
+            </div>
+          </div>
+
+          <div class="detail-card">
+            <h3>Risk Factors</h3>
+            <p id="detailRisks"></p>
+          </div>
+        </div>
+
+        <aside class="details-side">
+          <div class="side-card">
+            <h3>Client Profile</h3>
+            <p class="side-help">Select your perspective.</p>
+            <div class="profile-buttons">
+              <button class="btn-chip active" data-profile="school">Microschool</button>
+              <button class="btn-chip" data-profile="family">Family</button>
+              <button class="btn-chip" data-profile="dao">DAO</button>
+            </div>
+            <p id="profileHint" class="profile-hint"></p>
+          </div>
+
+          <div class="side-card side-card-muted">
+            <h3>Wallet Connection</h3>
+            <p class="side-help">Coming soon — non-custodial signing flow.</p>
+            <button class="btn btn-disabled" disabled>Connect Wallet (Prototype)</button>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="disclaimer" class="disclaimer-section">
+      <h2>Disclosures</h2>
+      <div class="disclaimer-grid">
+        <div class="disclaimer-card"><h3>Not a Custodian</h3><p>Self-Defi never controls user assets.</p></div>
+        <div class="disclaimer-card"><h3>No Guarantees</h3><p>Indicative ranges only — market dependent.</p></div>
+        <div class="disclaimer-card"><h3>Architecture, Not Advice</h3><p>This platform describes vault structures; execution is user-directed.</p></div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      Self-Defi • Order-Flow Vault Stack • Proof-of-Execution Operator
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
 
