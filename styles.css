@@ -157,10 +157,16 @@ body {
   box-shadow: var(--shadow-soft);
 }
 
+/* FIX — high contrast for visibility */
 .btn-outline {
   background: transparent;
-  color: #e5e7eb;
-  border: 1px solid rgba(148, 163, 184, 0.75);
+  color: #f9fafb;
+  border: 1px solid rgba(249, 250, 251, 0.85);
+}
+
+.btn-outline:hover {
+  background: rgba(15, 23, 42, 0.7);
+  border-color: #ffffff;
 }
 
 .btn-disabled {
@@ -171,10 +177,6 @@ body {
 
 .btn-primary:hover {
   filter: brightness(1.05);
-}
-
-.btn-outline:hover {
-  background: rgba(15, 23, 42, 0.5);
 }
 
 /* Hero card */
@@ -237,7 +239,7 @@ body {
   color: var(--text-muted);
 }
 
-/* Vault grid */
+/* Vault Grid */
 
 .vaults-section {
   margin-bottom: 2.3rem;
@@ -378,7 +380,7 @@ body {
   color: #b91c1c;
 }
 
-/* Unified board */
+/* Unified Board */
 
 .details-board {
   display: grid;
@@ -432,7 +434,7 @@ body {
   padding: 0.15rem 0;
 }
 
-/* Profile side content */
+/* Profile Side */
 
 .side-help {
   margin: 0 0 0.6rem;
@@ -461,12 +463,6 @@ body {
   border-color: rgba(59, 130, 246, 0.5);
   background: rgba(219, 234, 254, 0.9);
   color: var(--accent);
-}
-
-.profile-hint {
-  margin: 0;
-  font-size: 0.8rem;
-  color: var(--text-muted);
 }
 
 /* Disclaimers */
@@ -519,28 +515,22 @@ body {
   .hero {
     grid-template-columns: minmax(0, 1fr);
   }
-
   .vault-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-
   .details-header {
     flex-direction: column;
     align-items: flex-start;
   }
-
   .detail-badges {
     justify-content: flex-start;
   }
-
   .details-board {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-
   .detail-span-2 {
     grid-column: span 2;
   }
-
   .disclaimer-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -552,32 +542,24 @@ body {
     align-items: flex-start;
     gap: 0.5rem;
   }
-
   .topnav {
     width: 100%;
     justify-content: flex-start;
     flex-wrap: wrap;
   }
-
   .vault-grid {
     grid-template-columns: minmax(0, 1fr);
   }
-
   .details-board {
     grid-template-columns: minmax(0, 1fr);
   }
-
   .detail-span-2 {
     grid-column: span 1;
   }
-
   .disclaimer-grid {
     grid-template-columns: minmax(0, 1fr);
   }
-
   .page {
     padding-inline: 1rem;
   }
 }
-
-
