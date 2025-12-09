@@ -92,6 +92,11 @@ const detailRisks = document.getElementById("detailRisks");
 const profileButtons = document.querySelectorAll(".btn-chip");
 const profileHint = document.getElementById("profileHint");
 
+// Demo metric elements
+const metricTvlEl = document.getElementById("metricTvl");
+const metricMevEl = document.getElementById("metricMev");
+const metricJitoEl = document.getElementById("metricJito");
+
 // Profile text
 const profileHints = {
   school:
@@ -192,8 +197,43 @@ window.addEventListener("scroll", () => {
   }
 });
 
+// Dummy metric updater (purely cosmetic demo, NOT live on-chain data)
+const metricConfig = {
+  tvl: { base: 2.84, variance: 0.04 }, // billions
+  mev: { base: 1240, variance: 80 },   // SOL
+  jito: { base: 7.2, variance: 0.25 }, // percent
+};
+
+function updateDemoMetrics() {
+  if (metricTvlEl) {
+    const v =
+      metricConfig.tvl.base +
+      (Math.random() - 0.5) * 2 * metricConfig.tvl.variance;
+    metricTvlEl.textContent = `$${v.toFixed(2)}B`;
+  }
+
+  if (metricMevEl) {
+    const v =
+      metricConfig.mev.base +
+      (Math.random() - 0.5) * 2 * metricConfig.mev.variance;
+    const rounded = Math.max(0, Math.round(v));
+    metricMevEl.textContent = `${rounded.toLocaleString()} SOL`;
+  }
+
+  if (metricJitoEl) {
+    const v =
+      metricConfig.jito.base +
+      (Math.random() - 0.5) * 2 * metricConfig.jito.variance;
+    metricJitoEl.textContent = `${v.toFixed(2)}%`;
+  }
+}
+
 // Init
 renderVaultCards();
 selectVault("reserve");
 profileHint.textContent = profileHints["school"];
+
+// kick off dummy metrics
+updateDemoMetrics();
+setInterval(updateDemoMetrics, 6500);
 
